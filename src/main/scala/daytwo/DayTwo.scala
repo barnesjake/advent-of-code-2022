@@ -17,10 +17,10 @@ object DayTwo extends App {
   println("\n\n----- Part 1 -----\n\n")
 
   @tailrec
-  def iterateThroughFile(remainingLines: List[String], accScore: Int): Int = {
+  def iterateThroughFile(s: String => (Move, Move))(remainingLines: List[String], accScore: Int): Int = {
     remainingLines match {
-      case h :: t   => iterateThroughFile(t, calculateScore(parseLine(h)) + accScore)
-      case h :: Nil => iterateThroughFile(Nil, calculateScore(parseLine(h)) + accScore)
+      case h :: t   => iterateThroughFile(s)(t, calculateScore(s(h)) + accScore)
+      case h :: Nil => iterateThroughFile(s)(Nil, calculateScore(s(h)) + accScore)
       case Nil      => accScore
     }
   }
@@ -48,20 +48,11 @@ object DayTwo extends App {
     winLoseDrawPoints + moves._2.moveValue
   }
 
-  val score = iterateThroughFile(puzzleInputAsList, 0)
+  val score = iterateThroughFile(parseLine)(puzzleInputAsList, 0)
   println(s"Score: [ $score ]")
 
 
   println("\n\n----- Part 2 -----\n\n")
-
-  @tailrec
-  def iterateThroughFile2(remainingLines: List[String], accScore: Int): Int = {
-    remainingLines match {
-      case h :: t   => iterateThroughFile2(t, calculateScore(parseLine2(h)) + accScore)
-      case h :: Nil => iterateThroughFile2(Nil, calculateScore(parseLine2(h)) + accScore)
-      case Nil      => accScore
-    }
-  }
 
   private def parseLine2(line: String): (Move, Move) = {
     val stringsFromFile = line.split("\\s")
@@ -69,7 +60,7 @@ object DayTwo extends App {
     (symbolToMove(opponentChoice), determineWhatToPlay(myChoice, symbolToMove(opponentChoice)))
   }
 
-  val score2 = iterateThroughFile2(puzzleInputAsList, 0)
+  val score2 = iterateThroughFile(parseLine2)(puzzleInputAsList, 0)
   println(s"Score: [ $score2 ]")
 
 }
