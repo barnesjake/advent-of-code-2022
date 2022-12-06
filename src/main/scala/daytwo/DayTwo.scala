@@ -1,9 +1,9 @@
 package daytwo
 
 import daytwo.RockPaperScissors.{Move, Paper, Rock, Scissors, determineWhatToPlay, symbolToMove}
+import util.ReadPuzzleInput
 
 import scala.annotation.tailrec
-import scala.io.{BufferedSource, Source}
 
 /**
  * https://adventofcode.com/2022/day/2
@@ -11,8 +11,7 @@ import scala.io.{BufferedSource, Source}
 
 object DayTwo extends App {
 
-  val puzzleInput: BufferedSource = Source.fromFile(s"src/main/scala/daytwo/puzzleinput.txt")
-  val puzzleInputAsList: List[String] = puzzleInput.getLines().toList
+  val puzzleInputAsList: List[String] = ReadPuzzleInput.puzzleInputToList(s"src/main/scala/daytwo/puzzleinput.txt")
 
   println("\n\n----- Part 1 -----\n\n")
 

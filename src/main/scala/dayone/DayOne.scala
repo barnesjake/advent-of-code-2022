@@ -1,7 +1,8 @@
 package dayone
 
+import util.ReadPuzzleInput
+
 import scala.annotation.tailrec
-import scala.io.{BufferedSource, Source}
 
 /**
  * https://adventofcode.com/2022/day/1
@@ -9,8 +10,7 @@ import scala.io.{BufferedSource, Source}
 
 object DayOne extends App {
 
-  val puzzleInput: BufferedSource = Source.fromFile("src/main/scala/dayone/puzzleinput.txt")
-  val puzzleInputAsList: List[String] = puzzleInput.getLines().toList
+  val puzzleInputAsList: List[String] = ReadPuzzleInput.puzzleInputToList("src/main/scala/dayone/puzzleinput.txt")
 
   println("\n\n----------\n\n")
 
