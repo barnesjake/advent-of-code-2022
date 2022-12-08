@@ -2,8 +2,6 @@ package dayfour
 
 import util.ReadPuzzleInput
 
-import scala.annotation.tailrec
-
 /**
  * https://adventofcode.com/2022/day/4
  */
